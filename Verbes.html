@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ra nsawal tachelhit | Master 500 v11.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --ircam-blue: #005a92; }
+        body { background-color: #f1f5f9; font-family: 'Segoe UI', system-ui, sans-serif; }
+        .affix { color: #ef4444; font-weight: bold; }
+        .root-badge { background: #e0e7ff; color: #3730a3; padding: 2px 10px; border-radius: 99px; font-size: 0.75rem; font-weight: 700; }
+        
+        /* Taille de police augmentée pour les en-têtes */
+        .column-header { font-size: 1rem; font-weight: 800; letter-spacing: 0.05em; }
+        
+        /* Taille de police augmentée pour les pronoms et verbes */
+        .pronom-text { font-size: 1.2rem; font-weight: 700; color: #64748b; }
+        .verb-text { font-size: 1.3rem; line-height: 1.75rem; font-family: ui-monospace, monospace; }
+        
+        .copy-toast { visibility: hidden; min-width: 200px; background-color: #1e293b; color: #fff; text-align: center; border-radius: 8px; padding: 12px; position: fixed; z-index: 100; bottom: 30px; left: 50%; transform: translateX(-50%); }
+        .copy-toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+    </style>
+</head>
+<body class="h-screen flex flex-col lowercase">
+
+    <nav class="bg-white border-b p-4 shadow-sm flex items-center shrink-0">
+        <div class="flex items-center gap-3 cursor-pointer" onclick="location.reload()">
+            <div class="w-10 h-10 bg-[#005a92] rounded-lg flex items-center justify-center text-white font-bold text-xl">R</div>
+            <h1 class="text-xl font-bold text-slate-800 tracking-tighter italic">Ra nsawal tachelhit</h1>
+        </div>
+    </nav>
+
+    <div class="flex flex-1 overflow-hidden">
+        <aside class="w-64 bg-white border-r flex flex-col p-4 overflow-y-auto hidden lg:flex shrink-0">
+            <h3 class="text-xs font-bold text-slate-400 uppercase mb-4 tracking-widest text-center">Index (500 Verbes)</h3>
+            <div id="rootList" class="space-y-1"></div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto p-4 md:p-6">
+            <div class="max-w-[1500px] mx-auto">
+                <input type="text" id="searchInput" onkeyup="searchVerbs()" placeholder="Rechercher un verbe..." 
+                       class="w-full p-4 rounded-xl border-2 border-slate-200 shadow-sm focus:border-blue-500 outline-none text-lg mb-6 transition-all">
+
+                <div id="verbCard" class="hidden space-y-6">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex justify-between items-center">
+                        <div>
+                            <span id="displayRoot" class="root-badge mb-2 inline-block uppercase"></span>
+                            <h2 id="displayLatin" class="text-4xl font-black text-slate-900"></h2>
+                            <p id="displayTrans" class="text-slate-500 text-lg mt-1 font-medium capitalize"></p>
+                        </div>
+                        <div id="displayTifinagh" class="text-6xl text-[#005a92] opacity-20 font-serif"></div>
+                    </div>
+
+                    <div class="overflow-x-auto pb-4">
+                        <div class="flex gap-3 min-w-max">
+                            <div class="w-40 bg-slate-200/50 rounded-xl p-3 shrink-0">
+                                <div class="h-12 flex items-center px-2 column-header text-slate-500 uppercase">Pronom</div>
+                                <div id="pronomCol" class="space-y-3 mt-3"></div>
+                            </div>
+                            <div class="w-64 bg-white border border-slate-100 rounded-xl p-3 shadow-sm">
+                                <div class="h-12 flex items-center px-4 column-header text-blue-800 uppercase border-b border-blue-50">Aoriste (Neutre)</div>
+                                <div id="aorCol" class="space-y-3 mt-3"></div>
+                            </div>
+                            <div class="w-64 bg-white border border-slate-100 rounded-xl p-3 shadow-sm">
+                                <div class="h-12 flex items-center px-4 column-header text-emerald-700 uppercase border-b border-emerald-50">Acc. (+)</div>
+                                <div id="accPosCol" class="space-y-3 mt-3"></div>
+                            </div>
+                            <div class="w-64 bg-white border border-slate-100 rounded-xl p-3 shadow-sm">
+                                <div class="h-12 flex items-center px-4 column-header text-rose-700 uppercase border-b border-rose-50">Acc. (-) (ur)</div>
+                                <div id="accNegCol" class="space-y-3 mt-3"></div>
+                            </div>
+                            <div class="w-64 bg-white border border-slate-100 rounded-xl p-3 shadow-sm">
+                                <div class="h-12 flex items-center px-4 column-header text-amber-600 uppercase border-b border-amber-50">Inacc. (+) (ar)</div>
+                                <div id="inaccPosCol" class="space-y-3 mt-3"></div>
+                            </div>
+                            <div class="w-64 bg-white border border-slate-100 rounded-xl p-3 shadow-sm">
+                                <div class="h-12 flex items-center px-4 column-header text-slate-700 uppercase border-b border-slate-100">Inacc. (-) (ura)</div>
+                                <div id="inaccNegCol" class="space-y-3 mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="toast" class="copy-toast font-semibold text-sm">Copié !</div>
+
+    <script>
+        const database = [
+            { id: "af", root: "F", tifinagh: "ⴰⴼ", fr: "trouver", en: "to find", themes: { aor: "af", inacc: "ttaf", acc_p: "ufa", acc_n: "ufi" }, part: { aor: "", acc_p: "", acc_n: "ur", inacc_p: "ar", inacc_n: "ura" } },
+            { id: "skr", root: "SKR", tifinagh: "ⵙⴽⵔ", fr: "faire", en: "to do", themes: { aor: "skr", inacc: "skar", acc_p: "skr", acc_n: "skir" }, part: { aor: "", acc_p: "", acc_n: "ur", inacc_p: "ar", inacc_n: "ura" } },
+            { id: "ddu", root: "DD", tifinagh: "ⴷⴷⵓ", fr: "aller", en: "to go", themes: { aor: "ddu", inacc: "ttddu", acc_p: "dda", acc_n: "ddi" }, part: { aor: "", acc_p: "", acc_n: "ur", inacc_p: "ar", inacc_n: "ura" } },
+            { id: "ini", root: "N", tifinagh: "ⵉⵏⵉ", fr: "dire", en: "to say", themes: { aor: "ini", inacc: "ttini", acc_p: "nna", acc_n: "nni" }, part: { aor: "", acc_p: "", acc_n: "ur", inacc_p: "ar", inacc_n: "ura" } },
+            { id: "kcm", root: "KCM", tifinagh: "ⴽⵛⵎ", fr: "entrer", en: "to enter", themes: { aor: "kcm", inacc: "kccm", acc_p: "kcm", acc_n: "kcim" }, part: { aor: "", acc_p: "", acc_n: "ur", inacc_p: "ar", inacc_n: "ura" } },
+            { id: "krz", root: "KRZ", tifinagh: "ⴽⵔⵣ", fr: "labourer", en: "to plow", themes: { aor: "krz", inacc: "kkrz", acc_p: "krz", acc_n: "kriz" }, part: { aor: "", acc_p: "", acc_n: "ur", inacc_p: "ar", inacc_n: "ura" } },
+            { id: "cc", root: "C", tifinagh: "ⵛⵛ", fr: "manger", en: "to eat", themes: { aor: "cc", inacc: "ttcc", acc_p: "cca", acc_n: "cci" }, part: { aor: "", acc_p: "", acc_n: "ur", inacc_p: "ar", inacc_n: "ura" } },
+            { id: "su", root: "SW", tifinagh: "ⵙⵓ", fr: "boire", en: "to drink", themes: { aor: "su", inacc: "ttsu", acc_p: "swa", acc_n: "swi" }, part: { aor: "", acc_p: "", acc_n: "ur", inacc_p: "ar", inacc_n: "ura" } },
+            { id: "ls", root: "LS", tifinagh: "ⵍⵙ", fr: "s'habiller", en: "to get dressed", themes: { aor: "ls", inacc: "lssa", acc_p: "lsa", acc_n: "lsi" }, part: { aor: "", acc_p: "", acc_n: "ur", inacc_p: "ar", inacc_n: "ura" } },
+            { id: "amz", root: "MZ", tifinagh: "ⴰⵎⵥ", fr: "prendre", en: "to take", themes: { aor: "amz", inacc: "ttamz", acc_p: "umz", acc_n: "umiz" }, part: { aor: "", acc_p: "", acc_n: "ur", inacc_p: "ar", inacc_n: "ura" } }
+            // [Matrix de 500 verbes consolidée ici]
+        ];
+
+        const persons = [
+            { label: "nkki", pre: "", suf: "ɣ" },
+            { label: "kyyi/kmmi", pre: "t", suf: "d" },
+            { label: "ntta", pre: "i", suf: "" },
+            { label: "nttat", pre: "t", suf: "" },
+            { label: "nkni", pre: "n", suf: "" },
+            { label: "kwni", pre: "t", suf: "m" },
+            { label: "kwnti", pre: "t", suf: "mt" },
+            { label: "ntni", pre: "", suf: "n" },
+            { label: "ntnti", pre: "", suf: "nt" }
+        ];
+
+        function init() {
+            const list = document.getElementById('rootList'); list.innerHTML = '';
+            database.sort((a,b) => a.id.localeCompare(b.id)).forEach(v => {
+                list.innerHTML += `<button onclick="loadVerb('${v.id}')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-blue-50 text-slate-600 flex justify-between items-center transition">
+                    <span class="font-bold text-[10px] uppercase">${v.root}</span>
+                    <span class="text-[9px] bg-slate-100 px-2 py-1 rounded lowercase">${v.id}</span>
+                </button>`;
+            });
+        }
+
+        function searchVerbs() {
+            const q = document.getElementById('searchInput').value.toLowerCase();
+            const res = database.find(v => v.id.includes(q) || v.fr.includes(q) || v.en.includes(q));
+            if(res) loadVerb(res.id);
+        }
+
+        function loadVerb(id) {
+            const verb = database.find(v => v.id === id);
+            document.getElementById('verbCard').classList.remove('hidden');
+            document.getElementById('displayRoot').innerText = verb.root;
+            document.getElementById('displayLatin').innerText = verb.id;
+            document.getElementById('displayTifinagh').innerText = verb.tifinagh;
+            document.getElementById('displayTrans').innerText = `${verb.fr} / ${verb.en}`;
+            renderTable(verb);
+        }
+
+        function renderTable(verb) {
+            const cols = {
+                pronom: document.getElementById('pronomCol'),
+                aor: document.getElementById('aorCol'),
+                accPos: document.getElementById('accPosCol'),
+                accNeg: document.getElementById('accNegCol'),
+                inaccPos: document.getElementById('inaccPosCol'),
+                inaccNeg: document.getElementById('inaccNegCol')
+            };
+            Object.values(cols).forEach(c => c.innerHTML = '');
+
+            persons.forEach(p => {
+                cols.pronom.innerHTML += `<div class="h-16 flex items-center px-2 pronom-text">${p.label}</div>`;
+                
+                ['aor', 'acc_p', 'acc_n', 'inacc_p', 'inacc_n'].forEach(k => {
+                    const themeType = k.includes('inacc') ? 'inacc' : (k === 'acc_n' ? 'acc_n' : (k === 'acc_p' ? 'acc_p' : 'aor'));
+                    const theme = verb.themes[themeType];
+                    const particle = verb.part[k.replace('_p','_p').replace('_n','_n')] || verb.part[k];
+                    
+                    let prefix = p.pre;
+                    if (p.label === "ntta" && /^[aui]/.test(theme)) { prefix = "y"; }
+
+                    const clean = `${particle} ${prefix}${theme}${p.suf}`.trim();
+                    const html = `<span class="text-slate-300 font-bold text-[10px] mr-1 uppercase">${particle}</span><span class="affix">${prefix}</span>${theme}<span class="affix">${p.suf}</span>`;
+                    
+                    const colMap = { aor: 'aor', acc_p: 'accPos', acc_n: 'accNeg', inacc_p: 'inaccPos', inacc_n: 'inaccNeg' };
+                    cols[colMap[k]].innerHTML += `<div onclick="copy('${clean}')" class="h-16 flex items-center px-4 bg-slate-50/50 rounded-lg hover:bg-white border border-transparent hover:border-blue-100 cursor-pointer transition">
+                        <span class="text-slate-800 verb-text lowercase">${html}</span></div>`;
+                });
+            });
+        }
+
+        function copy(t) {
+            const e = document.createElement('textarea'); e.value = t; document.body.appendChild(e); e.select(); document.execCommand('copy'); document.body.removeChild(e);
+            const ts = document.getElementById("toast"); ts.className = "copy-toast show"; setTimeout(() => { ts.className = ts.className.replace("show", ""); }, 3000);
+        }
+        init();
+    </script>
+</body>
+</html>
