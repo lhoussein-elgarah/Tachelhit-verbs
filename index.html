@@ -26,8 +26,8 @@
             background-color: var(--sand);
             color: var(--text-main);
             margin: 0;
-            padding: 20px;
-            line-height: 1.6;
+            padding: 15px; /* Réduit pour plus de compacité */
+            line-height: 1.3; /* Interligne réduit */
             background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
             background-size: 20px 20px;
         }
@@ -37,75 +37,76 @@
             display: flex;
             max-width: 1200px;
             margin: 0 auto;
-            gap: 25px;
+            gap: 20px; /* Espace réduit entre sidebar et contenu */
             align-items: flex-start;
         }
 
         /* SIDEBAR (INDEX) */
         .sidebar {
-            width: 270px;
+            width: 250px; /* Légèrement plus étroite */
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(217, 92, 67, 0.08);
-            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(217, 92, 67, 0.08);
+            padding: 15px; /* Padding réduit */
             flex-shrink: 0;
             position: sticky;
-            top: 20px;
-            max-height: calc(100vh - 40px);
+            top: 15px;
+            max-height: calc(100vh - 30px);
             overflow-y: auto;
-            border-top: 5px solid var(--terracotta);
+            border-top: 4px solid var(--terracotta);
         }
 
         .sidebar h3 {
             margin-top: 0;
             color: var(--majorelle);
-            font-size: 1.3rem;
-            border-bottom: 2px dashed var(--border-color);
-            padding-bottom: 15px;
+            font-size: 1.15rem; /* Taille réduite */
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
             text-align: center;
         }
 
-        .sidebar h3 i { color: var(--terracotta); margin-right: 8px; }
+        .sidebar h3 i { color: var(--terracotta); margin-right: 6px; }
 
-        .index-group { margin-bottom: 20px; }
+        .index-group { margin-bottom: 12px; }
 
         .index-group-title {
             background: rgba(217, 92, 67, 0.1);
             color: var(--terracotta);
-            padding: 6px 12px;
+            padding: 4px 10px;
             font-weight: bold;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            margin-bottom: 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
             display: inline-block;
         }
 
         .index-list { list-style: none; padding: 0; margin: 0; }
 
         .index-list li {
-            padding: 10px 12px;
+            padding: 6px 10px; /* Padding réduit */
             cursor: pointer;
             border-bottom: 1px solid var(--sand-darker);
-            transition: all 0.3s ease;
-            font-size: 1.05rem;
+            transition: all 0.2s ease;
+            font-size: 0.95rem; /* Police légèrement plus petite */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-radius: 6px;
+            border-radius: 4px;
         }
 
         .index-list li:hover {
             background-color: var(--majorelle);
             color: white;
-            transform: translateX(5px);
+            transform: translateX(3px);
         }
 
         .index-list li:hover .tif-hint { color: rgba(255,255,255,0.8); }
 
         .index-list li span.tif-hint {
             color: var(--terracotta);
-            font-size: 0.9rem;
-            transition: color 0.3s;
+            font-size: 0.85rem;
+            transition: color 0.2s;
         }
 
         /* CONTENU PRINCIPAL */
@@ -117,14 +118,14 @@
         /* HEADER D'INSPIRATION MAROCAINE */
         header {
             text-align: center;
-            padding: 40px 20px;
+            padding: 25px 15px; /* Padding fortement réduit */
             background: linear-gradient(rgba(29, 52, 204, 0.9), rgba(29, 52, 204, 0.9)), 
                         url('https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=1000&q=80') center/cover;
             color: white;
-            border-radius: 20px 20px 50px 50px; 
-            margin-bottom: 30px;
-            box-shadow: 0 10px 25px rgba(29, 52, 204, 0.2);
-            border-bottom: 5px solid var(--terracotta);
+            border-radius: 15px 15px 35px 35px; /* Arches plus discrètes */
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(29, 52, 204, 0.2);
+            border-bottom: 4px solid var(--terracotta);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -132,13 +133,13 @@
 
         h1 { 
             margin: 0; 
-            font-size: 2.5rem; 
-            letter-spacing: 1px; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 2.1rem; /* Taille réduite */
+            letter-spacing: 0.5px; 
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .amazigh-yaz {
@@ -148,27 +149,27 @@
             line-height: 1;
         }
 
-        .subtitle { font-weight: 300; margin-top: 10px; font-size: 1.1rem; opacity: 0.95; }
+        .subtitle { font-weight: 300; margin-top: 5px; font-size: 1rem; opacity: 0.95; }
 
         /* BARRE DE RECHERCHE */
-        .search-wrapper { position: relative; margin-bottom: 40px; z-index: 50; }
+        .search-wrapper { position: relative; margin-bottom: 25px; z-index: 50; }
         
         .search-icon {
             position: absolute;
-            left: 20px;
+            left: 18px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--terracotta);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         #searchBox {
             width: 100%;
-            padding: 18px 25px 18px 55px;
-            font-size: 1.15rem;
+            padding: 12px 20px 12px 45px; /* Padding réduit */
+            font-size: 1.05rem;
             border: 2px solid var(--border-color);
-            border-radius: 50px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border-radius: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             outline: none;
             transition: all 0.3s ease;
             background: white;
@@ -176,32 +177,33 @@
 
         #searchBox:focus {
             border-color: var(--majorelle);
-            box-shadow: 0 8px 25px rgba(29, 52, 204, 0.15);
+            box-shadow: 0 5px 15px rgba(29, 52, 204, 0.15);
         }
 
         #suggestionsList {
             position: absolute;
             top: 100%;
-            left: 25px;
-            right: 25px;
+            left: 20px;
+            right: 20px;
             background: white;
-            border-radius: 0 0 20px 20px;
-            max-height: 350px;
+            border-radius: 0 0 15px 15px;
+            max-height: 250px; /* Plus compact */
             overflow-y: auto;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             display: none;
-            margin-top: 5px;
+            margin-top: 2px;
             border: 1px solid var(--border-color);
             border-top: none;
         }
 
         .suggestion {
-            padding: 15px 25px;
+            padding: 10px 20px;
             cursor: pointer;
             border-bottom: 1px solid var(--sand-darker);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-size: 0.95rem;
         }
 
         .suggestion:hover { background-color: rgba(29, 52, 204, 0.05); color: var(--majorelle); }
@@ -209,107 +211,107 @@
         /* CARTE DE RÉSULTAT */
         .result-card {
             background: white;
-            border-radius: 30px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
             display: none;
-            animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: slideUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid var(--border-color);
         }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* ARCHE MAURESQUE POUR LE HEADER DU VERBE */
+        /* HEADER DU VERBE */
         .card-header {
             background: var(--sand);
-            padding: 30px 20px;
-            border-bottom: 4px solid var(--majorelle);
+            padding: 20px 15px; /* Réduit pour compacité */
+            border-bottom: 3px solid var(--majorelle);
             text-align: center;
-            border-radius: 30px 30px 0 0;
+            border-radius: 20px 20px 0 0;
             position: relative;
         }
 
-        /* Symbole Yaz au centre de la carte */
+        /* Symbole Yaz au centre */
         .card-header::before {
             content: "ⵣ"; 
             font-family: system-ui, -apple-system, sans-serif;
             font-weight: bold;
             position: absolute;
-            top: -18px;
+            top: -14px;
             left: 50%;
             transform: translateX(-50%);
             background: var(--terracotta);
             color: white;
-            width: 36px;
-            height: 36px;
-            line-height: 36px;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
             border-radius: 50%;
-            font-size: 1.2rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-size: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .verb-main-title {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 25px;
-            margin-bottom: 15px;
+            gap: 15px;
+            margin-bottom: 10px; /* Marge réduite */
         }
 
-        .verb-latin { color: var(--majorelle); font-size: 2.8rem; font-weight: bold; margin: 0; text-transform: lowercase; }
-        .verb-tifinagh { color: var(--terracotta); font-size: 3rem; font-weight: normal; margin: 0; }
+        .verb-latin { color: var(--majorelle); font-size: 2.2rem; font-weight: bold; margin: 0; text-transform: lowercase; line-height: 1; }
+        .verb-tifinagh { color: var(--terracotta); font-size: 2.4rem; font-weight: normal; margin: 0; line-height: 1; }
 
-        .verb-translations { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+        .verb-translations { display: flex; justify-content: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
         
         .trans-badge { 
             background: white; 
-            padding: 8px 20px; 
-            border-radius: 30px; 
-            font-size: 1.05rem; 
-            color: var(--majorelle-dark); 
+            padding: 5px 12px; /* Fortement réduit */
+            border-radius: 20px; 
+            font-size: 0.95rem; 
+            color: var(--text-main); 
             border: 1px solid var(--border-color); 
             display: flex; 
             align-items: center; 
-            gap: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            gap: 6px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.02);
         }
 
-        .trans-badge i { color: var(--terracotta); }
+        .trans-badge .flag { font-size: 1.2rem; }
 
         .type-tag { 
             display: inline-block; 
-            font-size: 0.85rem; 
+            font-size: 0.8rem; 
             background: rgba(29, 52, 204, 0.1); 
-            padding: 6px 15px; 
-            border-radius: 20px; 
+            padding: 4px 12px; 
+            border-radius: 15px; 
             color: var(--majorelle); 
-            margin-top: 20px; 
+            margin-top: 12px; 
             font-weight: bold;
         }
 
         /* TABLEAU */
-        .table-container { overflow-x: auto; padding: 10px 0; }
+        .table-container { overflow-x: auto; padding: 5px 0; }
 
-        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        table { width: 100%; border-collapse: collapse; min-width: 550px; }
         
         th { 
             background-color: white; 
             text-align: left; 
-            padding: 18px 20px; 
-            font-size: 0.9rem; 
+            padding: 12px 15px; /* Plus compact */
+            font-size: 0.85rem; 
             text-transform: uppercase; 
             color: var(--terracotta); 
             border-bottom: 2px solid var(--sand-darker); 
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
-        td { padding: 16px 20px; border-bottom: 1px solid var(--sand-darker); font-size: 1.1rem; }
+        td { padding: 10px 15px; border-bottom: 1px solid var(--sand-darker); font-size: 1rem; }
         
         .col-pronom { 
             font-weight: bold; 
             color: var(--majorelle); 
             background: #fafbfc; 
-            width: 150px; 
+            width: 130px; 
         }
         
         tbody tr:hover { background-color: var(--sand); }
@@ -318,11 +320,11 @@
 
         /* RESPONSIVE */
         @media (max-width: 900px) {
-            .app-wrapper { flex-direction: column; }
-            .sidebar { width: 100%; position: static; max-height: 350px; order: 2; margin-top: 20px; border-radius: 20px; }
+            .app-wrapper { flex-direction: column; gap: 15px; }
+            .sidebar { width: 100%; position: static; max-height: 250px; order: 2; margin-top: 10px; border-radius: 12px; }
             .main-content { order: 1; width: 100%; }
             .verb-main-title { flex-direction: column; gap: 5px; }
-            header { border-radius: 15px 15px 30px 30px; }
+            header { padding: 20px 10px; border-radius: 12px; }
         }
     </style>
 </head>
@@ -354,8 +356,8 @@
                 </div>
                 
                 <div class="verb-translations">
-                    <div class="trans-badge"><i class="fa-solid fa-language"></i> <span id="verbFr">Français</span></div>
-                    <div class="trans-badge"><i class="fa-solid fa-earth-africa"></i> <span id="verbEn">English</span></div>
+                    <div class="trans-badge"><span class="flag">🇫🇷</span> <span id="verbFr">Français</span></div>
+                    <div class="trans-badge"><span class="flag">🇬🇧</span> <span id="verbEn">English</span></div>
                 </div>
                 
                 <span id="verbType" class="type-tag">Type</span>
@@ -509,7 +511,8 @@ searchBox.addEventListener('input', function() {
             matchingKeys.forEach(key => {
                 const suggDiv = document.createElement('div');
                 suggDiv.className = 'suggestion';
-                suggDiv.innerHTML = `<strong>${key}</strong> <span style="font-size:0.85rem; color:#888;"><i class="fa-solid fa-language" style="color: #D95C43;"></i> ${VERBES_DB[key].fr}</span>`;
+                // Ajout du drapeau français dans les suggestions également
+                suggDiv.innerHTML = `<strong>${key}</strong> <span style="font-size:0.85rem; color:#888;">🇫🇷 ${VERBES_DB[key].fr}</span>`;
                 suggDiv.onclick = () => renderVerb(key);
                 suggestionsList.appendChild(suggDiv);
             });
