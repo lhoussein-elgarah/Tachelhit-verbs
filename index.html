@@ -4,29 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conjugueur Tachelhit - ⴰⵎⵙⵙⵉⵏⵖ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --primary: #2b5c77;
-            --secondary: #3b8ba8;
-            --accent: #d94f33;
-            --bg-light: #f5f7f9;
+            /* Palette Marocaine */
+            --majorelle: #1D34CC; /* Bleu Majorelle vibrant */
+            --majorelle-dark: #152599;
+            --terracotta: #D95C43; /* Terre cuite de Marrakech */
+            --terracotta-light: #e88673;
+            --sand: #FDFBF7; /* Sable / Tadelakt clair */
+            --sand-darker: #f2eadf;
             --text-main: #333333;
-            --border-color: #e0e5ec;
-            --tif-color: #b33922;
+            --border-color: #E6DACA;
         }
 
         * { box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-light);
+            background-color: var(--sand);
             color: var(--text-main);
             margin: 0;
             padding: 20px;
             line-height: 1.6;
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
-        /* LAYOUT PRINCIPAL : SIDEBAR + CONTENU */
+        /* LAYOUT PRINCIPAL */
         .app-wrapper {
             display: flex;
             max-width: 1200px;
@@ -37,206 +43,305 @@
 
         /* SIDEBAR (INDEX) */
         .sidebar {
-            width: 260px;
+            width: 270px;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(217, 92, 67, 0.08);
             padding: 20px;
             flex-shrink: 0;
             position: sticky;
             top: 20px;
             max-height: calc(100vh - 40px);
             overflow-y: auto;
+            border-top: 5px solid var(--terracotta);
         }
 
         .sidebar h3 {
             margin-top: 0;
-            color: var(--primary);
+            color: var(--majorelle);
             font-size: 1.3rem;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
+            border-bottom: 2px dashed var(--border-color);
+            padding-bottom: 15px;
             text-align: center;
         }
 
-        .index-group {
-            margin-bottom: 20px;
-        }
+        .sidebar h3 i { color: var(--terracotta); margin-right: 8px; }
+
+        .index-group { margin-bottom: 20px; }
 
         .index-group-title {
-            background: var(--bg-light);
-            color: var(--secondary);
-            padding: 5px 10px;
+            background: rgba(217, 92, 67, 0.1);
+            color: var(--terracotta);
+            padding: 6px 12px;
             font-weight: bold;
-            border-radius: 6px;
-            font-size: 0.9rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
             margin-bottom: 10px;
+            display: inline-block;
         }
 
-        .index-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+        .index-list { list-style: none; padding: 0; margin: 0; }
 
         .index-list li {
-            padding: 8px 10px;
+            padding: 10px 12px;
             cursor: pointer;
-            border-bottom: 1px solid #f5f5f5;
-            transition: all 0.2s;
+            border-bottom: 1px solid var(--sand-darker);
+            transition: all 0.3s ease;
             font-size: 1.05rem;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            border-radius: 6px;
         }
 
         .index-list li:hover {
-            background-color: #f8fbfa;
-            color: var(--primary);
-            padding-left: 15px;
-            border-left: 3px solid var(--secondary);
+            background-color: var(--majorelle);
+            color: white;
+            transform: translateX(5px);
         }
 
+        .index-list li:hover .tif-hint { color: rgba(255,255,255,0.8); }
+
         .index-list li span.tif-hint {
-            color: #999;
-            font-size: 0.8rem;
+            color: var(--terracotta);
+            font-size: 0.9rem;
+            transition: color 0.3s;
         }
 
         /* CONTENU PRINCIPAL */
         .main-content {
             flex-grow: 1;
-            min-width: 0; /* Empêche le débordement sur flexbox */
+            min-width: 0;
         }
 
+        /* HEADER D'INSPIRATION MAROCAINE */
         header {
             text-align: center;
-            padding: 25px 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 40px 20px;
+            background: linear-gradient(rgba(29, 52, 204, 0.9), rgba(29, 52, 204, 0.9)), 
+                        url('https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=1000&q=80') center/cover;
             color: white;
-            border-radius: 12px;
+            border-radius: 20px 20px 50px 50px; 
             margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(29, 52, 204, 0.2);
+            border-bottom: 5px solid var(--terracotta);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        h1 { margin: 0; font-size: 2.2rem; }
-        .subtitle { font-weight: 300; margin-top: 5px; opacity: 0.9; }
+        h1 { 
+            margin: 0; 
+            font-size: 2.5rem; 
+            letter-spacing: 1px; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
 
-        .search-wrapper {
-            position: relative;
-            margin-bottom: 30px;
-            z-index: 50;
+        .amazigh-yaz {
+            color: var(--terracotta-light);
+            font-size: 1.1em;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .subtitle { font-weight: 300; margin-top: 10px; font-size: 1.1rem; opacity: 0.95; }
+
+        /* BARRE DE RECHERCHE */
+        .search-wrapper { position: relative; margin-bottom: 40px; z-index: 50; }
+        
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--terracotta);
+            font-size: 1.2rem;
         }
 
         #searchBox {
             width: 100%;
-            padding: 16px 25px;
+            padding: 18px 25px 18px 55px;
             font-size: 1.15rem;
             border: 2px solid var(--border-color);
-            border-radius: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
             outline: none;
             transition: all 0.3s ease;
+            background: white;
         }
 
         #searchBox:focus {
-            border-color: var(--secondary);
-            box-shadow: 0 5px 20px rgba(59, 139, 168, 0.2);
+            border-color: var(--majorelle);
+            box-shadow: 0 8px 25px rgba(29, 52, 204, 0.15);
         }
 
         #suggestionsList {
             position: absolute;
             top: 100%;
-            left: 20px;
-            right: 20px;
+            left: 25px;
+            right: 25px;
             background: white;
-            border-radius: 0 0 15px 15px;
+            border-radius: 0 0 20px 20px;
             max-height: 350px;
             overflow-y: auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             display: none;
             margin-top: 5px;
             border: 1px solid var(--border-color);
+            border-top: none;
         }
 
         .suggestion {
-            padding: 12px 20px;
+            padding: 15px 25px;
             cursor: pointer;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--sand-darker);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .suggestion:hover { background-color: #f8fbfa; color: var(--primary); }
+        .suggestion:hover { background-color: rgba(29, 52, 204, 0.05); color: var(--majorelle); }
 
+        /* CARTE DE RÉSULTAT */
         .result-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
             display: none;
-            animation: slideUp 0.3s ease-out;
+            animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--border-color);
         }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* ARCHE MAURESQUE POUR LE HEADER DU VERBE */
         .card-header {
-            background: #fdfdfd;
-            padding: 25px 30px;
-            border-bottom: 3px solid var(--secondary);
+            background: var(--sand);
+            padding: 30px 20px;
+            border-bottom: 4px solid var(--majorelle);
             text-align: center;
+            border-radius: 30px 30px 0 0;
+            position: relative;
+        }
+
+        /* Symbole Yaz au centre de la carte */
+        .card-header::before {
+            content: "ⵣ"; 
+            font-family: system-ui, -apple-system, sans-serif;
+            font-weight: bold;
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--terracotta);
+            color: white;
+            width: 36px;
+            height: 36px;
+            line-height: 36px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .verb-main-title {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
-            margin-bottom: 10px;
+            gap: 25px;
+            margin-bottom: 15px;
         }
 
-        .verb-latin { color: var(--primary); font-size: 2.5rem; font-weight: bold; margin: 0; text-transform: lowercase; }
-        .verb-tifinagh { color: var(--tif-color); font-size: 2.8rem; font-weight: normal; margin: 0; }
+        .verb-latin { color: var(--majorelle); font-size: 2.8rem; font-weight: bold; margin: 0; text-transform: lowercase; }
+        .verb-tifinagh { color: var(--terracotta); font-size: 3rem; font-weight: normal; margin: 0; }
 
-        .verb-translations { display: flex; justify-content: center; gap: 15px; margin-top: 15px; flex-wrap: wrap; }
-        .trans-badge { background: #f0f4f8; padding: 8px 16px; border-radius: 20px; font-size: 1rem; color: #444; border: 1px solid #dce4ec; display: flex; align-items: center; gap: 8px; }
+        .verb-translations { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+        
+        .trans-badge { 
+            background: white; 
+            padding: 8px 20px; 
+            border-radius: 30px; 
+            font-size: 1.05rem; 
+            color: var(--majorelle-dark); 
+            border: 1px solid var(--border-color); 
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
 
-        .type-tag { display: inline-block; font-size: 0.8rem; background: #eee; padding: 4px 12px; border-radius: 12px; color: #555; margin-top: 15px; }
+        .trans-badge i { color: var(--terracotta); }
 
-        .table-container { overflow-x: auto; }
+        .type-tag { 
+            display: inline-block; 
+            font-size: 0.85rem; 
+            background: rgba(29, 52, 204, 0.1); 
+            padding: 6px 15px; 
+            border-radius: 20px; 
+            color: var(--majorelle); 
+            margin-top: 20px; 
+            font-weight: bold;
+        }
+
+        /* TABLEAU */
+        .table-container { overflow-x: auto; padding: 10px 0; }
 
         table { width: 100%; border-collapse: collapse; min-width: 600px; }
-        th { background-color: var(--bg-light); text-align: left; padding: 16px; font-size: 0.85rem; text-transform: uppercase; color: #666; border-bottom: 2px solid var(--border-color); }
-        td { padding: 15px 16px; border-bottom: 1px solid #f0f0f0; font-size: 1.05rem; }
-        .col-pronom { font-weight: 700; color: var(--primary); background: #fafbfc; width: 140px; }
-        tbody tr:hover { background-color: #fefefe; }
-        tbody tr:hover td:not(.col-pronom) { color: var(--secondary); }
-        .empty-val { color: #b2bec3; font-style: italic; }
+        
+        th { 
+            background-color: white; 
+            text-align: left; 
+            padding: 18px 20px; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            color: var(--terracotta); 
+            border-bottom: 2px solid var(--sand-darker); 
+            letter-spacing: 1px;
+        }
+
+        td { padding: 16px 20px; border-bottom: 1px solid var(--sand-darker); font-size: 1.1rem; }
+        
+        .col-pronom { 
+            font-weight: bold; 
+            color: var(--majorelle); 
+            background: #fafbfc; 
+            width: 150px; 
+        }
+        
+        tbody tr:hover { background-color: var(--sand); }
+        tbody tr:hover td:not(.col-pronom) { color: var(--majorelle-dark); font-weight: 500; }
+        .empty-val { color: #cbd5e1; font-style: italic; }
 
         /* RESPONSIVE */
         @media (max-width: 900px) {
             .app-wrapper { flex-direction: column; }
-            .sidebar { width: 100%; position: static; max-height: 300px; order: 2; margin-top: 20px; }
+            .sidebar { width: 100%; position: static; max-height: 350px; order: 2; margin-top: 20px; border-radius: 20px; }
             .main-content { order: 1; width: 100%; }
             .verb-main-title { flex-direction: column; gap: 5px; }
+            header { border-radius: 15px 15px 30px 30px; }
         }
-
     </style>
 </head>
 <body>
 
 <div class="app-wrapper">
     <aside class="sidebar">
-        <h3>Index des Verbes</h3>
+        <h3><i class="fa-solid fa-book-open"></i> Index des Verbes</h3>
         <div id="sidebarIndex">
             </div>
     </aside>
 
     <main class="main-content">
         <header>
-            <h1>Conjugaison Tachelhit</h1>
-            <p class="subtitle">Base de données complète - ⴰⵎⵙⵙⵉⵏⵖ</p>
+            <h1>Conjugaison Tachelhit <span class="amazigh-yaz">ⵣ</span></h1>
         </header>
 
         <div class="search-wrapper">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
             <input type="text" id="searchBox" placeholder="Rechercher un verbe (ex: kcm, ffgh...)" autocomplete="off">
             <div id="suggestionsList"></div>
         </div>
@@ -249,8 +354,8 @@
                 </div>
                 
                 <div class="verb-translations">
-                    <div class="trans-badge">🇫🇷 <span id="verbFr">Français</span></div>
-                    <div class="trans-badge">🇬🇧 <span id="verbEn">English</span></div>
+                    <div class="trans-badge"><i class="fa-solid fa-language"></i> <span id="verbFr">Français</span></div>
+                    <div class="trans-badge"><i class="fa-solid fa-earth-africa"></i> <span id="verbEn">English</span></div>
                 </div>
                 
                 <span id="verbType" class="type-tag">Type</span>
@@ -340,14 +445,12 @@ const VERBES_DB = {
 function initSidebar() {
     const sidebarIndex = document.getElementById('sidebarIndex');
     
-    // Groupes alphabétiques
     const groups = {
         "A - F": [],
         "G - P": [],
         "Q - Z": []
     };
 
-    // Trier les clés (verbes) par ordre alphabétique
     const sortedVerbs = Object.keys(VERBES_DB).sort();
 
     sortedVerbs.forEach(verb => {
@@ -357,13 +460,12 @@ function initSidebar() {
         else groups["Q - Z"].push(verb);
     });
 
-    // Construire le HTML
     let html = '';
     for (const [groupName, verbs] of Object.entries(groups)) {
-        if (verbs.length === 0) continue; // Ne pas afficher les groupes vides
+        if (verbs.length === 0) continue; 
         
         html += `<div class="index-group">
-                    <div class="index-group-title">${groupName}</div>
+                    <div class="index-group-title"><i class="fa-solid fa-list-ul"></i> ${groupName}</div>
                     <ul class="index-list">`;
         
         verbs.forEach(v => {
@@ -381,7 +483,7 @@ function initSidebar() {
 }
 
 /**
- * LOGIQUE DE RECHERCHE ET D'AFFICHAGE (IDENTIQUE)
+ * LOGIQUE DE RECHERCHE ET D'AFFICHAGE
  */
 const searchBox = document.getElementById('searchBox');
 const suggestionsList = document.getElementById('suggestionsList');
@@ -407,7 +509,7 @@ searchBox.addEventListener('input', function() {
             matchingKeys.forEach(key => {
                 const suggDiv = document.createElement('div');
                 suggDiv.className = 'suggestion';
-                suggDiv.innerHTML = `<strong>${key}</strong> <span style="font-size:0.8rem; color:#888;">(${VERBES_DB[key].fr})</span>`;
+                suggDiv.innerHTML = `<strong>${key}</strong> <span style="font-size:0.85rem; color:#888;"><i class="fa-solid fa-language" style="color: #D95C43;"></i> ${VERBES_DB[key].fr}</span>`;
                 suggDiv.onclick = () => renderVerb(key);
                 suggestionsList.appendChild(suggDiv);
             });
@@ -429,7 +531,7 @@ function renderVerb(key) {
     verbTifinagh.textContent = data.tif;
     verbFr.textContent = data.fr;
     verbEn.textContent = data.en;
-    verbType.textContent = data.t;
+    verbType.innerHTML = `<i class="fa-solid fa-tag"></i> ${data.t}`;
     
     verbTableBody.innerHTML = '';
     data.c.forEach(row => {
@@ -450,7 +552,6 @@ function renderVerb(key) {
 
     resultCard.style.display = 'block';
     
-    // Si on est sur mobile, scroller automatiquement vers le résultat
     if (window.innerWidth <= 900) {
         resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -462,7 +563,6 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Initialiser la sidebar au chargement de la page
 window.onload = initSidebar;
 
 </script>
